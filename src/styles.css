@@ -17,14 +17,18 @@ body{
     height : 100vh;
     background-color: pink;
     z-index: 2;
+    transition: left 0.3s;
+}
+.side-menu-bar.visible {
+    left: -12%;
 }
 
 .top-menu-bar{
     position: absolute;
     top: 0;
-    left: 12%;
+    left: 0;
     right: 0;
-    height: 100px;
+    height: 10%;
     background-color: blue;
     z-index: 2;
 }

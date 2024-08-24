@@ -7,4 +7,10 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class AppComponent {
 
+  isSidebarVisible = false;
+
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
 }

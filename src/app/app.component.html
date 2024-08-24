@@ -1,9 +1,9 @@
 <div class="main-container" >
-  <button class="toggle-button btn btn-primary" >toggle</button>
+  <button class="toggle-button btn btn-primary" (click)="toggleSidebar()">toggle</button>
   <div class="top-menu-bar" >
 
   </div>
-  <div class="side-menu-bar">
+  <div class="side-menu-bar" [class.visible]="isSidebarVisible">
 
   </div>
 </div>
