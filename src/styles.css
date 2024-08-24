@@ -2,32 +2,35 @@ body{
     margin: 0;
     padding: 0;
     position: relative;
-    z-index: 1;
 }
 .main-container{
     height: 100vh;
     width: 100vw;
     position: relative;
     background-color: lightblue;
-    z-index: 1;
 }
-
 .side-menu-bar{
     position: absolute;
-    top: 0px;
-    left : 0px;
+    top: 0;
+    left : 0;
     width: 12%;
     height : 100vh;
     background-color: pink;
-
+    z-index: 2;
 }
 
 .top-menu-bar{
     position: absolute;
-    top: 0px;
-    left : 0px;
-    right: 0px;
-    width: 12%;
-    height : 100px;
+    top: 0;
+    left: 12%;
+    right: 0;
+    height: 100px;
     background-color: blue;
+    z-index: 2;
+}
+.toggle-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
 }
