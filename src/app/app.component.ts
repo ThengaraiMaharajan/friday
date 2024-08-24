@@ -6,14 +6,5 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'friday';
-
-  @ViewChild('childTwo') childTwo?: ElementRef;
-
-  isSidebarVisible = false;
-
-  toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
 
 }
