@@ -8,6 +8,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class AppComponent {
 
   isSidebarVisible = false;
+  isUserLoggedIn : boolean = false;
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
