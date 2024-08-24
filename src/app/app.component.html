@@ -1,11 +1,12 @@
 <div class="body-container" >
   <div class="grandparent glossy-bg">
+    <button class="toggle-btn" (click)="toggleSidebar()" >Toggle</button>
     im carrying router outlet
     <router-outlet />
     <div class="mother">
-        <div class="child-one"></div>
-        <div #childTwo class="child-two"></div>
-        <button class="toggle-btn" (click)="toggleSidebar()" >Toggle</button>
+      <div class="child-one"></div>
+      <div #childTwo class="child-two" [class.visible]="isSidebarVisible"></div>
+        
     </div>
   </div>
 </div>

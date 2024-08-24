@@ -9,8 +9,8 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-    background-color: #e0e0ff;
-    padding: 5px;
+    background-color: #fff;
+    padding: 1px;
     box-sizing: border-box;
 }
 .mother {
@@ -28,23 +28,25 @@
 .child-two {
     position: absolute;
     top: 10px;
-    right: -100px;
+    left: -100px;
     width: 100px;
     height: 100px;
     background-color: rgba(255, 153, 153, 0.7);
-    transition: right 0.3s ease-in-out;
-}
-.child-two.visible {
-    right: 10px;
-}
-.toggle-btn {
+    transition: left 0.3s ease-in-out;
+  }
+  
+  .child-two.visible {
+    left: 10px;
+  }
+  
+  .toggle-btn {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 120px;
     z-index: 10;
     padding: 5px 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
-}
+  }

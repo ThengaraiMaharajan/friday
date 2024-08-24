@@ -8,12 +8,12 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class AppComponent {
   title = 'friday';
 
-  @ViewChild('childTwo') childTwo!: ElementRef;
+  @ViewChild('childTwo') childTwo?: ElementRef;
+
+  isSidebarVisible = false;
 
   toggleSidebar() {
-    if (this.childTwo) {
-      this.childTwo.nativeElement.classList.toggle('visible');
-    }
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 
 }
