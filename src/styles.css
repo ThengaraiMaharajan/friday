@@ -31,7 +31,7 @@ body{
     top: 0;
     left: 0;
     right: 0;
-    height: 6%;
+    height: 50px;
     border-radius: 5px;
     z-index: 2;
     background-color: lightblue;
@@ -39,8 +39,8 @@ body{
 }
 .toggle-button {
     position: absolute;
-    top: 2%;
-    left: 1%;
+    top: 15px;
+    left: 15px;
     z-index: 3;
     color: #000000 !important;
 }
