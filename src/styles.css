@@ -43,12 +43,16 @@ body{
     left: 10px;
     z-index: 3;
     color: lightskyblue !important;
-    border: solid 1px blue;
-    border-radius: 15px;
+    border-radius: 15px;border: none;
 }
 .toggle-button:hover {
     background-color: lightgray;
     color: white !important;
+    transition: 0.3s;
+    border: solid 1px blue;
+}
+.toggle-button:active {
+    opacity: 0.2;
 }
 /* Large Desktops (1200px and up) */
 @media screen and (min-width: 1200px) {
