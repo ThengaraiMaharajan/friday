@@ -1,9 +1,12 @@
 <div>
-  <h1 class="text-center" *ngIf="showLoginForm" mat-dialog-title>Login</h1>
-  <h1 class="text-center" *ngIf="!showLoginForm" mat-dialog-title>Registration</h1>
-  <div mat-dialog-content *ngIf="showLoginForm" >
+  <h1 class="text-center" *ngIf="showForm===1" mat-dialog-title>Login</h1>
+  <h1 class="text-center" *ngIf="showForm===2" mat-dialog-title>Registration</h1>
+  <h1 class="text-center" *ngIf="showForm===3" mat-dialog-title>Verify</h1>
+  <h1 class="text-center" *ngIf="showForm===4" mat-dialog-title>Set Password</h1>
+  
+  <div mat-dialog-content *ngIf="showForm===1" >
     
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="loginFormOnSubmit()">
       
       <div class="p-1" >
         <mat-form-field appearance="outline">
@@ -44,35 +47,69 @@
 
       <div>
         <div class="mt-3">
-          <p class="text-center" >Don't have an account ? <a (click)="showRegisterForm()">Sign up</a> </p>
+          <p class="text-center" >Don't have an account ? <a class="atag" (click)="showRegisterForm()">Sign up</a> </p>
         </div>
       </div>
       
     </form>
 
   </div>
-  <div mat-dialog-content *ngIf="!showLoginForm" >
+  
+  <div mat-dialog-content *ngIf="showForm===2" >
     
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      
+    <form [formGroup]="registrationForm" (ngSubmit)="registrationFormOnSubmit()">
+
       <div class="p-1" >
         <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" class="mat-input" />
-          <mat-error *ngIf="loginForm.get('email')?.invalid && isLoginFormSubmitted">
-            <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</span>
-            <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address.</span>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" class="mat-input" >
+          <mat-error *ngIf="registrationForm.get('firstName')?.invalid && isRegistrationFormSubmitted">
+            <span *ngIf="registrationForm.get('firstName')?.errors?.['required']">First name is required.</span>
+            <span *ngIf="registrationForm.get('firstName')?.errors?.['minlength']">First name must be at least 2 characters long.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="p-1" >
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" class="mat-input" >
+          <mat-error *ngIf="registrationForm.get('lastName')?.invalid && isRegistrationFormSubmitted">
+            <span *ngIf="registrationForm.get('lastName')?.errors?.['required']">Last name is required.</span>
+            <span *ngIf="registrationForm.get('lastName')?.errors?.['minlength']">Last name must be at least 2 characters long.</span>
           </mat-error>
         </mat-form-field>
       </div>
 
       <div class="p-1" >
         <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" class="mat-input" />
-          <mat-error *ngIf="loginForm.get('password')?.invalid && isLoginFormSubmitted">
-            <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</span>
-            <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</span>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" class="mat-input" >
+          <mat-error *ngIf="registrationForm.get('email')?.invalid && isRegistrationFormSubmitted">
+            <span *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span *ngIf="registrationForm.get('email')?.errors?.['email']">Please enter a valid email address.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="p-1" >
+        <mat-form-field appearance="outline">
+          <mat-label>Country Code</mat-label>
+          <input matInput formControlName="countryCode" placeholder="e.g. +1" class="mat-input" >
+          <mat-error *ngIf="registrationForm.get('countryCode')?.invalid && isRegistrationFormSubmitted">
+            <span *ngIf="registrationForm.get('countryCode')?.errors?.['required']">Country code is required.</span>
+            <span *ngIf="registrationForm.get('countryCode')?.errors?.['pattern']">Please enter a valid country code (e.g. +1, +44).</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="p-1" >
+        <mat-form-field appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phoneNo" class="mat-input" >
+          <mat-error *ngIf="registrationForm.get('phoneNo')?.invalid && isRegistrationFormSubmitted">
+            <span *ngIf="registrationForm.get('phoneNo')?.errors?.['required']">Phone number is required.</span>
+            <span *ngIf="registrationForm.get('phoneNo')?.errors?.['pattern']">Please enter a valid 10-digit phone number.</span>
           </mat-error>
         </mat-form-field>
       </div>
@@ -85,20 +122,101 @@
           </button>
         </div>
         <div class="m-1">
-          <button type="submit" class="btn btn-success">
+          <button type="submit" class="btn btn-success" >
             <i class="fa fa-check-circle" aria-hidden="true"></i>
             Submit
           </button>
         </div>
       </div>
 
-      <div>
-        <div class="mt-3">
-          <p class="text-center" >Don't have an account ? <a (click)="showRegisterForm()">Sign up</a> </p>
-        </div>
-      </div>
-      
     </form>
 
   </div>
+
+  <div mat-dialog-content *ngIf="showForm===3" >
+    
+    <form [formGroup]="otpForm" (ngSubmit)="otpFormOnSubmit()">
+
+      <div class="p-1">
+        <h2 mat-dialog-title class="text-center" >
+          Enter 6 digit OTP Sent to your E-mail / Phone
+        </h2>
+      </div>
+
+      <div class="p-1" >
+        <mat-form-field appearance="outline">
+          <mat-label>OTP</mat-label>
+          <input matInput formControlName="code" class="mat-input" />
+          <mat-error *ngIf="otpForm.get('code')?.invalid && isOtpFormSubmitted">
+            <span *ngIf="otpForm.get('code')?.errors?.['required']">OTP is required.</span>
+            <span *ngIf="otpForm.get('code')?.errors?.['minlength']">OTP minimum length is 6 digits.</span>
+            <span *ngIf="otpForm.get('code')?.errors?.['maxlength']">OTP maximum length is 6 digits.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <div class="m-1">
+          <button type="reset" class="btn btn-danger" (click)="onNoClick()" >
+            <i class="fa fa-ban" aria-hidden="true"></i>
+            Cancel
+          </button>
+        </div>
+        <div class="m-1">
+          <button type="submit" class="btn btn-success" >
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            Submit
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div mat-dialog-content *ngIf="showForm===4" >
+    
+    <form [formGroup]="passwordForm" (ngSubmit)="passwordFormOnSubmit()">
+
+      <div class="p-1" >
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" class="mat-input" >
+          <mat-error *ngIf="passwordForm.get('password')?.invalid && isPasswordFormSubmitted">
+            <span *ngIf="passwordForm.get('password')?.errors?.['required']">Password is required.</span>
+            <span *ngIf="passwordForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="p-1" >
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput formControlName="confirmPassword" class="mat-input" >
+          <mat-error *ngIf="passwordForm.get('confirmPassword')?.invalid && isPasswordFormSubmitted">
+            <span *ngIf="passwordForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required.</span>
+            <span *ngIf="passwordForm.get('confirmPassword')?.errors?.['minlength']">Confirm Password must be at least 8 characters long.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <div class="m-1">
+          <button type="reset" class="btn btn-danger" (click)="onNoClick()" >
+            <i class="fa fa-ban" aria-hidden="true"></i>
+            Cancel
+          </button>
+        </div>
+        <div class="m-1">
+          <button type="submit" class="btn btn-success" >
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            Submit
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
 </div>

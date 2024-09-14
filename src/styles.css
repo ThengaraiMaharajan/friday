@@ -143,3 +143,12 @@ body{
 .btn:active{
     opacity: 0.4;
 }
+
+.atag{
+    color: rgb(0, 149, 246) ;
+    text-decoration: none;
+    cursor: pointer;
+}
+.atag:hover{
+    text-decoration: underline;
+}
