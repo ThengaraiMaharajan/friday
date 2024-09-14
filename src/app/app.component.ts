@@ -20,8 +20,8 @@ export class AppComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '40vw',
-      height: '40vh',
+      width: '50vw',
+      // height: '50vh',
       panelClass: 'shadow-light',
       backdropClass: 'shadow-light',
       disableClose : true,

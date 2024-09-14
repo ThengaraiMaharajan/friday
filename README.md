@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Coding Structure 
+
+// Variable Declaration
+View Childs
+ElementRef
+routing var
+Form var
+constant var
+display var
+api response var
+constructor(){}
+ngOnint(){
+    routing assignment
+    form assignment
+    constant assignment
+    form valueChange operation
+    methods
+    api calls
+}
+ngOninitMethods
+ngOnintApicalls
+otherMethods
