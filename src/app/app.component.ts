@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginComponent } from './dialogs/login/login.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +9,29 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(public dialog: MatDialog) {}
+
   isSidebarVisible = false;
   isUserLoggedIn : boolean = false;
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '40vw',
+      height: '40vh',
+      panelClass: 'shadow-light',
+      backdropClass: 'shadow-light',
+      disableClose : true,
+      autoFocus : true
+      // You can pass data to the dialog if needed
+      // data: { name: this.name, animal: this.animal }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result here if needed
+    });
   }
 
 }
